@@ -649,9 +649,9 @@ function estCarteJouable(carte, joueurId) {
                   (carte.valeur !== 10 || joueur.dixKm < 2) &&
                   (joueur.km + carte.valeur <= 42.195);
     } else if (carte.type === "arrivee") {
-        jouable = joueur.km === 42 &&
-                  joueur.depart &&
+        jouable = joueur.depart &&
                   !estBloque(joueur.zone) &&
+                  joueur.km >= 42 && // Changé de joueur.km === 42
                   joueur.km + carte.valeur === 42.195;
     } else if (carte.type === "crasse") {
         jouable = true;
@@ -862,6 +862,9 @@ function jouerCarte(carte) {
     // Initialiser estReaction à false pour toutes les cartes
     carte.estReaction = false;
 
+    // Variable pour suivre les km ajoutés
+    let kmAjoutes = 0;
+
     if (dernierCrasseJoueur && dernierCrasseJoueur !== joueurActif) {
         const crasseActive = joueur.zone[joueur.zone.length - 1];
         if (!crasseActive || !crasseActive.nom) return setStatus("Erreur : crasse active invalide.");
@@ -888,7 +891,11 @@ function jouerCarte(carte) {
             // Ajouter la botte après avoir retiré la crasse
             carte.estReaction = true;
             joueur.zone.push(carte);
-            joueur.km += carte.kmReaction || carte.kmNormal || 0;
+            // Limiter les kmReaction pour ne pas dépasser 42 km
+            const kmRestants = 42 - joueur.km;
+            const kmAAjouter = Math.min(carte.kmReaction || carte.kmNormal || 0, kmRestants);
+            joueur.km += kmAAjouter;
+            kmAjoutes = kmAAjouter; // Enregistrer les km ajoutés
             joueur.points += (modeJeu === "premier" || typePartie === "contreIA") ? 10 : 8;
             retirerCarte(joueur.main, carte);
             aReagi = true;
@@ -898,7 +905,7 @@ function jouerCarte(carte) {
                 piocher("pioche", true);
             }
 
-            console.log(`J${joueur.id} réagit avec botte ${carte.nom} contre ${crasseActive.nom}`);
+            console.log(`J${joueur.id} réagit avec botte ${carte.nom} contre ${crasseActive.nom}, ajoute ${kmAAjouter} km, km total=${joueur.km.toFixed(3)}`);
             setStatus(`J${joueur.id}${joueur.estIA ? ` (IA, ${joueur.personnalite})` : ""} a joué ${carte.nom} pour contrer ${crasseActive.nom}.`);
             maj();
             return;
@@ -913,6 +920,7 @@ function jouerCarte(carte) {
         joueur.sas = carte.tempsMax;
         joueur.zone.push(carte);
         aJoueCarte = true;
+        kmAjoutes = 0; // Pas de km ajoutés pour départ
     } else if (carte.type === "km") {
         joueur.km += carte.valeur;
         joueur.temps += (modeJeu === "contreLaMontre" || typePartie === "contreIA") ? carte.temps : 0;
@@ -920,10 +928,12 @@ function jouerCarte(carte) {
         if (carte.valeur === 10) joueur.dixKm++;
         joueur.zone.push(carte);
         aJoueCarte = true;
+        kmAjoutes = carte.valeur; // Enregistrer les km ajoutés
     } else if (carte.type === "arrivee") {
         joueur.km += 0.195;
         joueur.zone.push(carte);
         aJoueCarte = true;
+        kmAjoutes = 0.195; // Enregistrer les km ajoutés
     } else if (carte.type === "parade") {
         const crasse = joueur.zone.find(c => carte.contre && carte.contre.includes(c.nom));
         if (!crasse) return setStatus("Aucune crasse à contrer avec cette parade.");
@@ -940,6 +950,7 @@ function jouerCarte(carte) {
             }
         }
         aJoueCarte = true;
+        kmAjoutes = 0; // Pas de km ajoutés pour parade
     } else if (carte.type === "ravito") {
         joueurs.forEach(j => {
             j.zone = j.zone.filter(c => c.type !== "crasse" && c.type !== "parade");
@@ -947,16 +958,22 @@ function jouerCarte(carte) {
         });
         defausse.push(carte);
         aJoueCarte = true;
+        kmAjoutes = 0; // Pas de km ajoutés pour ravito
     } else if (carte.type === "botte") {
         // Utiliser kmNormal car posée pendant le tour normal
         carte.estReaction = false; // Pas une réaction
-        joueur.km += carte.kmNormal || 0;
+        // Limiter les kmNormal pour ne pas dépasser 42 km
+        const kmRestants = 42 - joueur.km;
+        const kmAAjouter = Math.min(carte.kmNormal || 0, kmRestants);
+        joueur.km += kmAAjouter;
+        kmAjoutes = kmAAjouter; // Enregistrer les km ajoutés
         joueur.points += modeJeu === "premier" ? 5 : 4;
         joueur.zone.push(carte);
         aJoueCarte = true;
+        console.log(`J${joueur.id} joue botte ${carte.nom} en tour normal, ajoute ${kmAAjouter} km, km total=${joueur.km.toFixed(3)}`);
     }
     retirerCarte(joueur.main, carte);
-    console.log(`J${joueur.id} joue ${carte.nom}`);
+    console.log(`J${joueur.id} joue ${carte.nom}, ajoute ${kmAjoutes} km, km total=${joueur.km.toFixed(3)}`);
     setStatus(`J${joueur.id}${joueur.estIA ? ` (IA, ${joueur.personnalite})` : ""} a joué ${carte.nom}.`);
     maj();
 }
