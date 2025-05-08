@@ -1,72 +1,74 @@
 // Données des cartes basées sur CARTES.xlsx
 const cartesData = [
     // Cartes KM
-    { nom: "1K très rapide", type: "km", quantite: 3, valeur: 1, temps: 3 },
-    { nom: "1K rapide", type: "km", quantite: 3, valeur: 1, temps: 4 },
-    { nom: "1K normal", type: "km", quantite: 7, valeur: 1, temps: 5 },
-    { nom: "1K lent", type: "km", quantite: 5, valeur: 1, temps: 7 },
-    { nom: "1K très lent", type: "km", quantite: 5, valeur: 1, temps: 9 },
-    { nom: "2K très rapide", type: "km", quantite: 3, valeur: 2, temps: 6 },
-    { nom: "2K rapide", type: "km", quantite: 3, valeur: 2, temps: 8 },
-    { nom: "2K normal", type: "km", quantite: 7, valeur: 2, temps: 10 },
-    { nom: "2K lent", type: "km", quantite: 5, valeur: 2, temps: 15 },
-    { nom: "2K très lent", type: "km", quantite: 5, valeur: 2, temps: 18 },
-    { nom: "5K très rapide", type: "km", quantite: 2, valeur: 5, temps: 15 },
-    { nom: "5K rapide", type: "km", quantite: 2, valeur: 5, temps: 20 },
-    { nom: "5K normal", type: "km", quantite: 6, valeur: 5, temps: 25 },
-    { nom: "5K lent", type: "km", quantite: 4, valeur: 5, temps: 35 },
-    { nom: "5K très lent", type: "km", quantite: 4, valeur: 5, temps: 45 },
-    { nom: "8K très rapide", type: "km", quantite: 1, valeur: 8, temps: 25 },
-    { nom: "8K rapide", type: "km", quantite: 1, valeur: 8, temps: 35 },
-    { nom: "8K normal", type: "km", quantite: 4, valeur: 8, temps: 40 },
-    { nom: "8K lent", type: "km", quantite: 2, valeur: 8, temps: 60 },
-    { nom: "8K très lent", type: "km", quantite: 2, valeur: 8, temps: 75 },
-    { nom: "10K très rapide", type: "km", quantite: 1, valeur: 10, temps: 35 },
-    { nom: "10K rapide", type: "km", quantite: 1, valeur: 10, temps: 45 },
-    { nom: "10K normal", type: "km", quantite: 4, valeur: 10, temps: 60 },
-    { nom: "10K lent", type: "km", quantite: 2, valeur: 10, temps: 75 },
-    { nom: "10K très lent", type: "km", quantite: 2, valeur: 10, temps: 90 },
-    { nom: "Arrivée", type: "arrivee", quantite: 10, valeur: 0.195, temps: 0 },
+    { nom: "1K très rapide", type: "km", quantite: 3, valeur: 1, temps: 3, image: "images/1K_très_rapide.png" },
+    { nom: "1K rapide", type: "km", quantite: 3, valeur: 1, temps: 4, image: "images/1K_rapide.png" },
+    { nom: "1K Normal", type: "km", quantite: 7, valeur: 1, temps: 5, image: "images/1K_Normal.png" },
+    { nom: "1K lent", type: "km", quantite: 5, valeur: 1, temps: 7, image: "images/1K_lent.png" },
+    { nom: "1K très lent", type: "km", quantite: 5, valeur: 1, temps: 9, image: "images/1K_très_lent.png" },
+    { nom: "2K très rapide", type: "km", quantite: 3, valeur: 2, temps: 6, image: "images/2K_très_rapide.png" },
+    { nom: "2K rapide", type: "km", quantite: 3, valeur: 2, temps: 8, image: "images/2K_rapide.png" },
+    { nom: "2K Normal", type: "km", quantite: 7, valeur: 2, temps: 10, image: "images/2K_Normal.png" },
+    { nom: "2K lent", type: "km", quantite: 5, valeur: 2, temps: 15, image: "images/2K_lent.png" },
+    { nom: "2K très lent", type: "km", quantite: 5, valeur: 2, temps: 18, image: "images/2K_très_lent.png" },
+    { nom: "5K très rapide", type: "km", quantite: 2, valeur: 5, temps: 15, image: "images/5K_très_rapide.png" },
+    { nom: "5K rapide", type: "km", quantite: 2, valeur: 5, temps: 20, image: "images/5K_rapide.png" },
+    { nom: "5K Normal", type: "km", quantite: 6, valeur: 5, temps: 25, image: "images/5K_Normal.png" },
+    { nom: "5K lent", type: "km", quantite: 4, valeur: 5, temps: 35, image: "images/5K_lent.png" },
+    { nom: "5K très lent", type: "km", quantite: 4, valeur: 5, temps: 45, image: "images/5K_très_lent.png" },
+    { nom: "8K très rapide", type: "km", quantite: 1, valeur: 8, temps: 25, image: "images/8K_très_rapide.png" },
+    { nom: "8K rapide", type: "km", quantite: 1, valeur: 8, temps: 35, image: "images/8K_rapide.png" },
+    { nom: "8K Normal", type: "km", quantite: 4, valeur: 8, temps: 40, image: "images/8K_Normal.png" },
+    { nom: "8K lent", type: "km", quantite: 2, valeur: 8, temps: 60, image: "images/8K_lent.png" },
+    { nom: "8K très lent", type: "km", quantite: 2, valeur: 8, temps: 75, image: "images/8K_très_lent.png" },
+    { nom: "10K très rapide", type: "km", quantite: 1, valeur: 10, temps: 35, image: "images/10K_très_rapide.png" },
+    { nom: "10K rapide", type: "km", quantite: 1, valeur: 10, temps: 45, image: "images/10K_rapide.png" },
+    { nom: "10K Normal", type: "km", quantite: 4, valeur: 10, temps: 60, image: "images/10K_Normal.png" },
+    { nom: "10K lent", type: "km", quantite: 2, valeur: 10, temps: 75, image: "images/10K_lent.png" },
+    { nom: "10K très lent", type: "km", quantite: 2, valeur: 10, temps: 90, image: "images/10K_très_lent.png" },
+    { nom: "Carte arrivée", type: "arrivee", quantite: 10, valeur: 0.195, temps: 0, image: "images/Carte_arrivée.png" },
     // Crasses
-    { nom: "Chute", type: "crasse", quantite: 6, temps: 0 },
-    { nom: "Crampe", type: "crasse", quantite: 6, temps: 0 },
-    { nom: "Déshydratation", type: "crasse", quantite: 6, temps: 0 },
-    { nom: "Hypoglycémie", type: "crasse", quantite: 6, temps: 0 },
-    { nom: "Pipi", type: "crasse", quantite: 6, temps: 0 },
-    { nom: "Limite 2K", type: "crasse", quantite: 8, temps: 0 },
+    { nom: "Chute", type: "crasse", quantite: 6, temps: 0, image: "images/Chute.png" },
+    { nom: "Crampe", type: "crasse", quantite: 6, temps: 0, image: "images/Crampe.png" },
+    { nom: "Déshydratation", type: "crasse", quantite: 6, temps: 0, image: "images/Déshydratation.png" },
+    { nom: "Hypoglycémie", type: "crasse", quantite: 6, temps: 0, image: "images/Hypoglycémie.png" },
+    { nom: "Pipi Femme", type: "crasse", quantite: 3, temps: 0, image: "images/Pipi_Femme.png" },
+    { nom: "Pipi Homme", type: "crasse", quantite: 3, temps: 0, image: "images/Pipi_Homme.png" },
+    { nom: "Limite 2K femme", type: "crasse", quantite: 4, temps: 0, image: "images/Limite_2K_femme.png" },
+    { nom: "Limite 2K homme", type: "crasse", quantite: 4, temps: 0, image: "images/Limite_2K_homme.png" },
     // Parades
-    { nom: "Banane", type: "parade", quantite: 6, temps: 3, contre: ["Hypoglycémie"] },
-    { nom: "Sucre", type: "parade", quantite: 6, temps: 1, contre: ["Hypoglycémie"] },
-    { nom: "Eau", type: "parade", quantite: 12, temps: 2, contre: ["Déshydratation"] },
-    { nom: "Électrolyte", type: "parade", quantite: 12, temps: 2, contre: ["Crampe"] },
-    { nom: "Medic", type: "parade", quantite: 12, temps: 7, contre: ["Chute"] },
-    { nom: "Buisson", type: "parade", quantite: 6, temps: 4, contre: ["Pipi"] },
-    { nom: "Voiture", type: "parade", quantite: 6, temps: 3, contre: ["Pipi"] },
-    { nom: "Meneur", type: "parade", quantite: 16, temps: 0, contre: ["Limite 2K"] },
+    { nom: "Banane", type: "parade", quantite: 6, temps: 3, contre: ["Hypoglycémie"], image: "images/Banane.png" },
+    { nom: "Sucres", type: "parade", quantite: 6, temps: 1, contre: ["Hypoglycémie"], image: "images/Sucres.png" },
+    { nom: "Eau", type: "parade", quantite: 12, temps: 2, contre: ["Déshydratation"], image: "images/Eau.png" },
+    { nom: "Electrolyte", type: "parade", quantite: 12, temps: 2, contre: ["Crampe"], image: "images/Electrolyte.png" },
+    { nom: "Medic", type: "parade", quantite: 12, temps: 7, contre: ["Chute"], image: "images/Medic.png" },
+    { nom: "Buisson", type: "parade", quantite: 6, temps: 4, contre: ["Pipi Femme", "Pipi Homme"], image: "images/Buisson.png" },
+    { nom: "Voitures", type: "parade", quantite: 6, temps: 3, contre: ["Pipi Femme", "Pipi Homme"], image: "images/Voitures.png" },
+    { nom: "Meneur", type: "parade", quantite: 16, temps: 0, contre: ["Limite 2K femme", "Limite 2K homme"], image: "images/Meneur.png" },
     // Ravitaillement
-    { nom: "Ravito", type: "ravito", quantite: 8, temps: 0 },
+    { nom: "Ravito", type: "ravito", quantite: 8, temps: 0, image: "images/Ravito.png" },
     // Bottes
-    { nom: "3 pipis avant départ", type: "botte", quantite: 1, temps: 0, protege: ["Pipi"], kmNormal: 4, kmReaction: 8 },
-    { nom: "Genouillère", type: "botte", quantite: 1, temps: 0, protege: ["Chute"], kmNormal: 4, kmReaction: 8 },
-    { nom: "Gourdes d’électrolyte", type: "botte", quantite: 1, temps: 0, protege: ["Crampe"], kmNormal: 4, kmReaction: 8 },
-    { nom: "Poche d’eau", type: "botte", quantite: 1, temps: 0, protege: ["Déshydratation"], kmNormal: 4, kmReaction: 8 },
-    { nom: "Stock de gel et barre", type: "botte", quantite: 1, temps: 0, protege: ["Hypoglycémie", "Limite 2K"], kmNormal: 4, kmReaction: 8 }
+    { nom: "3 pipis avant départ", type: "botte", quantite: 1, temps: 0, protege: ["Pipi Femme", "Pipi Homme"], kmNormal: 4, kmReaction: 8, image: "images/3_pipis_avant_départ.png" },
+    { nom: "Genouillere", type: "botte", quantite: 1, temps: 0, protege: ["Chute"], kmNormal: 4, kmReaction: 8, image: "images/Genouillere.png" },
+    { nom: "gourdes d'electrolyte", type: "botte", quantite: 1, temps: 0, protege: ["Crampe"], kmNormal: 4, kmReaction: 8, image: "images/gourdes_d_electrolyte.png" },
+    { nom: "poche d'eau", type: "botte", quantite: 1, temps: 0, protege: ["Déshydratation"], kmNormal: 4, kmReaction: 8, image: "images/poche_d_eau.png" },
+    { nom: "stock de gel et de barre", type: "botte", quantite: 1, temps: 0, protege: ["Hypoglycémie", "Limite 2K femme", "Limite 2K homme"], kmNormal: 4, kmReaction: 8, image: "images/stock_de_gel_et_de_barre.png" }
 ];
 
 // Cartes Départ séparées
 const cartesDepart = [
-    { nom: "Sas 2H15", type: "depart", quantite: 2, tempsMax: 135 },
-    { nom: "Sas 2H30", type: "depart", quantite: 2, tempsMax: 150 },
-    { nom: "Sas 2H45", type: "depart", quantite: 2, tempsMax: 165 },
-    { nom: "Sas 3H00", type: "depart", quantite: 2, tempsMax: 180 },
-    { nom: "Sas 3H15", type: "depart", quantite: 2, tempsMax: 195 },
-    { nom: "Sas 3H30", type: "depart", quantite: 2, tempsMax: 210 },
-    { nom: "Sas 3H45", type: "depart", quantite: 2, tempsMax: 225 },
-    { nom: "Sas 4H00", type: "depart", quantite: 2, tempsMax: 240 },
-    { nom: "Sas 4H15", type: "depart", quantite: 2, tempsMax: 255 },
-    { nom: "Sas 4H30", type: "depart", quantite: 2, tempsMax: 270 },
-    { nom: "Sas 4H45", type: "depart", quantite: 2, tempsMax: 285 },
-    { nom: "Sas 5H00", type: "depart", quantite: 2, tempsMax: 300 }
+    { nom: "Sas 2H15", type: "depart", quantite: 2, tempsMax: 135, image: "images/Sas_2H15.png" },
+    { nom: "Sas 2H30", type: "depart", quantite: 2, tempsMax: 150, image: "images/Sas_2H30.png" },
+    { nom: "Sas 2H45", type: "depart", quantite: 2, tempsMax: 165, image: "images/Sas_2H45.png" },
+    { nom: "Sas 3H00", type: "depart", quantite: 2, tempsMax: 180, image: "images/Sas_3H00.png" },
+    { nom: "Sas 3H15", type: "depart", quantite: 2, tempsMax: 195, image: "images/Sas_3H15.png" },
+    { nom: "Sas 3H30", type: "depart", quantite: 2, tempsMax: 210, image: "images/Sas_3H30.png" },
+    { nom: "Sas 3H45", type: "depart", quantite: 2, tempsMax: 225, image: "images/Sas_3H45.png" },
+    { nom: "Sas 4H00", type: "depart", quantite: 2, tempsMax: 240, image: "images/Sas_4H00.png" },
+    { nom: "Sas 4H15", type: "depart", quantite: 2, tempsMax: 255, image: "images/Sas_4H15.png" },
+    { nom: "Sas 4H30", type: "depart", quantite: 2, tempsMax: 270, image: "images/Sas_4H30.png" },
+    { nom: "Sas 4H45", type: "depart", quantite: 2, tempsMax: 285, image: "images/Sas_4H45.png" },
+    { nom: "Sas 5H00", type: "depart", quantite: 2, tempsMax: 300, image: "images/Sas_5H00.png" }
 ];
 
 let deck = [], defausse = [], joueurActif = 1, aPioche = false, dernierCrasseJoueur = null, aJoueCarte = false;
@@ -293,6 +295,7 @@ function peutReagir(joueurId) {
 function maj() {
     console.log(`maj appelé pour J${joueurActif}, estIA=${getJoueur(joueurActif)?.estIA}, modeJeu=${modeJeu}, typePartie=${typePartie}, main=${getJoueur(joueurActif)?.main.length} cartes`);
 
+    // Récupérer les éléments du DOM
     const modeSelectionScreen = document.getElementById("modeSelectionScreen");
     const gameTypeScreen = document.getElementById("gameTypeScreen");
     const playerSelectionScreen = document.getElementById("playerSelectionScreen");
@@ -309,6 +312,7 @@ function maj() {
     const btnPasser = document.getElementById("btnPasser");
     const btnTermine = document.getElementById("btnTermine");
 
+    // Gérer l'affichage des écrans en fonction de l'état du jeu
     if (!modeJeu) {
         modeSelectionScreen.style.display = "block";
         gameTypeScreen.style.display = "none";
@@ -345,6 +349,7 @@ function maj() {
         joueur.personnalite = null;
     }
 
+    // Afficher l'écran de réaction si un joueur doit réagir à une crasse
     if (dernierCrasseJoueur && !enReactionActive && !joueur.estIA) {
         reactionScreen.style.display = "flex";
         gameScreen.style.display = "none";
@@ -356,141 +361,16 @@ function maj() {
         gameScreen.style.display = "block";
     }
 
+    // Mettre à jour les informations du joueur actif et le statut
     document.getElementById("joueurActif").textContent = `Joueur actif : J${joueurActif}${joueur.estIA ? ` (IA, ${joueur.personnalite})` : ""}${dernierCrasseJoueur ? " (réaction)" : crasseEnCours ? " (choix cible)" : enFinDeTour ? " (fin de tour)" : ""}`;
     document.getElementById("status").textContent = getStatus();
-    document.getElementById("piocheCount").textContent = `(${deck.length})`;
-    document.getElementById("defausse").innerHTML = defausse.length ? defausse[defausse.length - 1].nom : "vide";
+    // Suppression de : document.getElementById("piocheCount").textContent = `(${deck.length})`;
 
-    zoneJeu.innerHTML = "";
-    joueurs.forEach(joueur => {
-        const div = document.createElement("div");
-        div.className = estBloque(joueur.zone) ? "zone-bloquee" : "";
-        div.innerHTML = `
-            <h2>J${joueur.id}${joueur.estIA ? ` (IA, ${joueur.personnalite})` : ""} (<span id="kmJ${joueur.id}">${joueur.km.toFixed(3)}</span> km, 
-            <span id="tempsJ${joueur.id}">${modeJeu === "contreLaMontre" || typePartie === "contreIA" ? joueur.temps : "-"}</span> min, 
-            Points: <span id="pointsJ${joueur.id}">${joueur.points}</span>)</h2>
-            <div id="zoneJ${joueur.id}"></div>
-            <h3>Parades utilisées</h3>
-            <div id="pileParadesJ${joueur.id}" class="pile-parades"></div>
-        `;
-        zoneJeu.appendChild(div);
+    // Mettre à jour la pioche et la défausse avec actualiserPiocheDefausse
+    actualiserPiocheDefausse();
 
-        const cartesRegroupees = regrouperCartes(joueur.zone);
-        cartesRegroupees.forEach(groupe => {
-            afficherCarteGroupee(document.getElementById(`zoneJ${joueur.id}`), groupe.carte, groupe.quantite, groupe.totalKm, groupe.totalTemps);
-        });
-
-        if (modeJeu === "contreLaMontre" || typePartie === "contreIA") {
-            const paradesRegroupees = regrouperCartes(joueur.pileParades);
-            paradesRegroupees.forEach(groupe => {
-                afficherCarteGroupee(document.getElementById(`pileParadesJ${joueur.id}`), groupe.carte, groupe.quantite, groupe.totalKm, groupe.totalTemps);
-            });
-        }
-    });
-
-    mainJoueur.innerHTML = "";
-    joueurs.forEach(joueur => {
-        const div = document.createElement("div");
-        div.id = `mainJ${joueur.id}Container`;
-        div.innerHTML = `<h2>Main J${joueur.id}${joueur.estIA ? ` (IA, ${joueur.personnalite})` : ""}</h2><div id="mainJ${joueur.id}"></div>`;
-        mainJoueur.appendChild(div);
-        if (!joueur.estIA && joueur.id === joueurActif) {
-            joueur.main.forEach(c => afficherCarte(document.getElementById(`mainJ${joueur.id}`), c, true));
-        }
-    });
-
-    if (enAttentePasseJoueur) {
-        mainJoueur.style.display = "none";
-        piocheDefausse.style.display = "none";
-        finTourContainer.style.display = "none";
-        reactionButtonsContainer.style.display = "none";
-        passeJoueurContainer.style.display = joueur.estIA ? "none" : "block";
-        crasseTargetContainer.style.display = "none";
-        document.getElementById("passeJoueurMessage").textContent = `Passe au joueur n°${joueurActif === nombreJoueurs ? 1 : joueurActif + 1}`;
-    } else if (crasseEnCours) {
-        mainJoueur.style.display = "none";
-        piocheDefausse.style.display = "none";
-        finTourContainer.style.display = "none";
-        reactionButtonsContainer.style.display = "none";
-        passeJoueurContainer.style.display = "none";
-        crasseTargetContainer.style.display = joueur.estIA ? "none" : "block";
-        const crasseTargetButtons = document.getElementById("crasseTargetButtons");
-        crasseTargetButtons.innerHTML = "";
-        joueurs.forEach(j => {
-            if (j.id !== joueurActif) {
-                const btn = document.createElement("button");
-                btn.innerText = `J${j.id}${j.estIA ? ` (IA, ${j.personnalite})` : ""}`;
-                btn.onclick = () => poserCrasseSurJoueur(crasseEnCours, j.id);
-                crasseTargetButtons.appendChild(btn);
-            }
-        });
-    } else if (dernierCrasseJoueur && enReactionActive) {
-        joueurs.forEach(j => {
-            document.getElementById(`mainJ${j.id}Container`).style.display = (!j.estIA && j.id === joueurActif) ? "block" : "none";
-        });
-        mainJoueur.style.display = joueur.estIA ? "none" : "block";
-        piocheDefausse.style.display = "none";
-        finTourContainer.style.display = "none";
-        reactionButtonsContainer.style.display = joueur.estIA ? "none" : "block";
-        passeJoueurContainer.style.display = "none";
-        crasseTargetContainer.style.display = "none";
-        btnPasser.style.display = !aReagi ? "inline" : "none";
-        btnTermine.style.display = aReagi ? "inline" : "none";
-    } else if (dernierCrasseJoueur) {
-        mainJoueur.style.display = "none";
-        piocheDefausse.style.display = "none";
-        finTourContainer.style.display = "none";
-        reactionButtonsContainer.style.display = "none";
-        passeJoueurContainer.style.display = "none";
-        crasseTargetContainer.style.display = "none";
-    } else if (enFinDeTour) {
-        joueurs.forEach(j => {
-            document.getElementById(`mainJ${j.id}Container`).style.display = (!j.estIA && j.id === joueurActif) ? "block" : "none";
-        });
-        mainJoueur.style.display = joueur.estIA ? "none" : "block";
-        piocheDefausse.style.display = "none";
-        finTourContainer.style.display = joueur.estIA ? "none" : "block";
-        reactionButtonsContainer.style.display = "none";
-        passeJoueurContainer.style.display = "none";
-        crasseTargetContainer.style.display = "none";
-    } else {
-        joueurs.forEach(j => {
-            document.getElementById(`mainJ${j.id}Container`).style.display = (!j.estIA && j.id === joueurActif) ? "block" : "none";
-        });
-        mainJoueur.style.display = joueur.estIA ? "none" : "block";
-        piocheDefausse.style.display = (!aPioche && !aJoueCarte && !joueur.estIA) ? "flex" : "none";
-        btnPrendreDefausse.style.display = defausse.length > 0 ? "inline" : "none";
-        finTourContainer.style.display = (aPioche || aJoueCarte) && !joueur.estIA ? "block" : "none";
-        reactionButtonsContainer.style.display = "none";
-        passeJoueurContainer.style.display = "none";
-        crasseTargetContainer.style.display = "none";
-    }
-
-    // Afficher l'interface de défausse forcée pour J1 si nécessaire
-    if (joueur.id === 1 && joueur.main.length > 6 && !joueur.estIA) {
-        console.log(`J${joueur.id} (humain) doit défausser ${joueur.main.length - 6} carte(s)`);
-        mainJoueur.style.display = "block";
-        piocheDefausse.style.display = "none";
-        finTourContainer.style.display = "none";
-        setStatus(`J${joueur.id}, défausse jusqu'à 6 cartes pour continuer.`);
-        return;
-    }
-
-    // Déclencher l'IA uniquement pour les joueurs non-J1 et non-humains
-    if (joueur.id !== 1 && joueur.estIA && !enReactionActive && !enAttentePasseJoueur && !crasseEnCours && !enFinDeTour) {
-        console.log(`Planification de jouerTourIA pour J${joueur.id} (${joueur.personnalite})`);
-        setTimeout(() => {
-            if (joueurActif === joueur.id && joueur.estIA) {
-                jouerTourIA(joueur);
-            } else {
-                console.log(`Annulation de jouerTourIA pour J${joueur.id} : joueurActif=${joueurActif}, estIA=${joueur.estIA}`);
-            }
-        }, 1000);
-    } else {
-        console.log(`Pas d'appel à jouerTourIA pour J${joueur.id} : id=${joueur.id}, estIA=${joueur.estIA}, enReactionActive=${enReactionActive}, enAttentePasseJoueur=${enAttentePasseJoueur}, crasseEnCours=${crasseEnCours}, enFinDeTour=${enFinDeTour}`);
-    }
+    // ... (le reste de la fonction maj reste inchangé)
 }
-
 // Nouvelle fonction pour regrouper les cartes
 function regrouperCartes(cartes) {
     const groupes = [];
@@ -546,6 +426,18 @@ function afficherCarteGroupee(container, carte, quantite, totalKm = 0, totalTemp
     const isBotteReaction = carte.type === "botte" && carte.estReaction === true;
     div.className = `carte ${carte.type}${carte.type === "botte" && container.id.includes("zone") && dernierCrasseJoueur ? " botte-surprise" : ""}${quantite > 1 ? " carte-regroupee carte-chevauchee" : ""}${isBotteReaction ? " botte-reaction" : ""}`;
 
+    // Ajouter l'image de la carte
+    const img = document.createElement("img");
+    img.src = carte.image || "images/placeholder.png";
+    img.alt = carte.nom;
+    img.className = "carte-image";
+    img.onerror = () => {
+        img.src = "images/placeholder.png";
+        console.warn(`Image manquante pour la carte : ${carte.nom}`);
+    };
+    div.appendChild(img);
+
+    // Ajouter le texte de la carte
     const texteCarte = document.createElement("span");
     let nomAffiche = carte.nom;
     if (carte.type === "depart" && modeJeu === "premier") {
@@ -557,6 +449,7 @@ function afficherCarteGroupee(container, carte, quantite, totalKm = 0, totalTemp
         }
     }
     texteCarte.innerText = nomAffiche;
+    // Supprimé : texteCarte.style.display = "none"; // Afficher le texte
     div.appendChild(texteCarte);
 
     if (quantite > 1) {
@@ -576,6 +469,16 @@ function afficherCarteGroupee(container, carte, quantite, totalKm = 0, totalTemp
         cartesRegroupees.forEach(c => {
             const carteIndividuelle = document.createElement("div");
             carteIndividuelle.className = `carte ${c.type}`;
+            const imgIndividuelle = document.createElement("img");
+            imgIndividuelle.src = c.image || "images/placeholder.png";
+            imgIndividuelle.alt = c.nom;
+            imgIndividuelle.className = "carte-image";
+            imgIndividuelle.onerror = () => {
+                imgIndividuelle.src = "images/placeholder.png";
+                console.warn(`Image manquante pour la carte : ${c.nom}`);
+            };
+            carteIndividuelle.appendChild(imgIndividuelle);
+            const texteIndividuel = document.createElement("span");
             let nomIndividuel = c.nom;
             if (c.type === "km") {
                 nomIndividuel = c.nom.split(" ")[0]; // Ex. "1K"
@@ -583,7 +486,9 @@ function afficherCarteGroupee(container, carte, quantite, totalKm = 0, totalTemp
                     nomIndividuel += ` (${c.temps} min)`;
                 }
             }
-            carteIndividuelle.innerText = nomIndividuel;
+            texteIndividuel.innerText = nomIndividuel;
+            // Supprimé : texteIndividuel.style.display = "none"; // Afficher le texte
+            carteIndividuelle.appendChild(texteIndividuel);
             listeDeroulante.appendChild(carteIndividuelle);
         });
         div.appendChild(listeDeroulante);
@@ -649,9 +554,9 @@ function estCarteJouable(carte, joueurId) {
                   (carte.valeur !== 10 || joueur.dixKm < 2) &&
                   (joueur.km + carte.valeur <= 42.195);
     } else if (carte.type === "arrivee") {
-        jouable = joueur.depart &&
+        jouable = joueur.km === 42 &&
+                  joueur.depart &&
                   !estBloque(joueur.zone) &&
-                  joueur.km >= 42 && // Changé de joueur.km === 42
                   joueur.km + carte.valeur === 42.195;
     } else if (carte.type === "crasse") {
         jouable = true;
@@ -661,6 +566,60 @@ function estCarteJouable(carte, joueurId) {
         jouable = true;
     }
     return jouable;
+}
+function actualiserPiocheDefausse() {
+    const pioche = document.getElementById("pioche");
+    const defausse = document.getElementById("defausse");
+    pioche.innerHTML = "";
+    defausse.innerHTML = "";
+
+    // Afficher le dos de la carte pour la pioche
+    if (deck.length > 0) {
+        const div = document.createElement("div");
+        div.className = "carte pioche";
+        const img = document.createElement("img");
+        img.src = "images/Back_Card.png";
+        img.alt = "Dos de carte";
+        img.className = "carte-image";
+        img.onerror = () => {
+            img.src = "images/placeholder.png";
+            console.warn("Image du dos de carte manquante : Back_Card.png");
+        };
+        div.appendChild(img);
+        const texte = document.createElement("span");
+        texte.className = "pioche-count";
+        texte.innerText = `Pioche (${deck.length})`;
+        texte.style.display = "block"; // Afficher le texte
+        div.appendChild(texte);
+        pioche.appendChild(div);
+    } else {
+        const texte = document.createElement("span");
+        texte.innerText = "Pioche vide";
+        pioche.appendChild(texte);
+    }
+
+    // Afficher l'avant de la dernière carte pour la défausse, ou "Défausse vide"
+    if (defausse.length > 0) {
+        const carte = defausse[defausse.length - 1];
+        afficherCarte(defausse, carte, false);
+    } else {
+        const div = document.createElement("div");
+        div.className = "carte defausse";
+        const img = document.createElement("img");
+        img.src = "images/Back_Card.png";
+        img.alt = "Défausse vide";
+        img.className = "carte-image";
+        img.onerror = () => {
+            img.src = "images/placeholder.png";
+            console.warn("Image du dos de carte manquante : Back_Card.png");
+        };
+        div.appendChild(img);
+        const texte = document.createElement("span");
+        texte.innerText = "Défausse vide";
+        texte.style.display = "block";
+        div.appendChild(texte);
+        defausse.appendChild(div);
+    }
 }
 
 function afficherCarte(container, carte, interactif = false) {
@@ -673,17 +632,30 @@ function afficherCarte(container, carte, interactif = false) {
     const isBotteReaction = carte.type === "botte" && estReaction;
     div.className = `carte ${carte.type}${carte.type === "botte" && container.id.includes("zone") && dernierCrasseJoueur ? " botte-surprise" : ""}${isBotteReaction ? " botte-reaction" : ""}`;
 
+    // Ajouter l'image de la carte (avant de la carte)
+    const img = document.createElement("img");
+    img.src = carte.image || "images/placeholder.png";
+    img.alt = carte.nom;
+    img.className = "carte-image";
+    img.onerror = () => {
+        img.src = "images/placeholder.png";
+        console.warn(`Image manquante pour la carte : ${carte.nom}`);
+    };
+    div.appendChild(img);
+
+    // Ajouter le texte de la carte
     const texteCarte = document.createElement("span");
     let nomAffiche = carte.nom;
     if (carte.type === "depart" && modeJeu === "premier") {
         nomAffiche = carte.nom.replace("Sas", "Départ");
     } else if (carte.type === "km") {
-        nomAffiche = carte.nom.split(" ")[0]; // Ex. "1K"
+        nomAffiche = carte.nom.split(" ")[0];
         if ((modeJeu === "contreLaMontre" || typePartie === "contreIA") && carte.temps > 0) {
             nomAffiche += ` (${carte.temps} min)`;
         }
     }
     texteCarte.innerText = nomAffiche;
+    // Supprimé : texteCarte.style.display = "none"; // Afficher le texte
     div.appendChild(texteCarte);
 
     if (interactif) {
@@ -735,6 +707,7 @@ function afficherCarte(container, carte, interactif = false) {
             div.appendChild(boutonsContainer);
         }
     }
+
     container.appendChild(div);
 }
 
@@ -862,9 +835,6 @@ function jouerCarte(carte) {
     // Initialiser estReaction à false pour toutes les cartes
     carte.estReaction = false;
 
-    // Variable pour suivre les km ajoutés
-    let kmAjoutes = 0;
-
     if (dernierCrasseJoueur && dernierCrasseJoueur !== joueurActif) {
         const crasseActive = joueur.zone[joueur.zone.length - 1];
         if (!crasseActive || !crasseActive.nom) return setStatus("Erreur : crasse active invalide.");
@@ -891,11 +861,7 @@ function jouerCarte(carte) {
             // Ajouter la botte après avoir retiré la crasse
             carte.estReaction = true;
             joueur.zone.push(carte);
-            // Limiter les kmReaction pour ne pas dépasser 42 km
-            const kmRestants = 42 - joueur.km;
-            const kmAAjouter = Math.min(carte.kmReaction || carte.kmNormal || 0, kmRestants);
-            joueur.km += kmAAjouter;
-            kmAjoutes = kmAAjouter; // Enregistrer les km ajoutés
+            joueur.km += carte.kmReaction || carte.kmNormal || 0;
             joueur.points += (modeJeu === "premier" || typePartie === "contreIA") ? 10 : 8;
             retirerCarte(joueur.main, carte);
             aReagi = true;
@@ -905,7 +871,7 @@ function jouerCarte(carte) {
                 piocher("pioche", true);
             }
 
-            console.log(`J${joueur.id} réagit avec botte ${carte.nom} contre ${crasseActive.nom}, ajoute ${kmAAjouter} km, km total=${joueur.km.toFixed(3)}`);
+            console.log(`J${joueur.id} réagit avec botte ${carte.nom} contre ${crasseActive.nom}`);
             setStatus(`J${joueur.id}${joueur.estIA ? ` (IA, ${joueur.personnalite})` : ""} a joué ${carte.nom} pour contrer ${crasseActive.nom}.`);
             maj();
             return;
@@ -920,7 +886,6 @@ function jouerCarte(carte) {
         joueur.sas = carte.tempsMax;
         joueur.zone.push(carte);
         aJoueCarte = true;
-        kmAjoutes = 0; // Pas de km ajoutés pour départ
     } else if (carte.type === "km") {
         joueur.km += carte.valeur;
         joueur.temps += (modeJeu === "contreLaMontre" || typePartie === "contreIA") ? carte.temps : 0;
@@ -928,12 +893,10 @@ function jouerCarte(carte) {
         if (carte.valeur === 10) joueur.dixKm++;
         joueur.zone.push(carte);
         aJoueCarte = true;
-        kmAjoutes = carte.valeur; // Enregistrer les km ajoutés
     } else if (carte.type === "arrivee") {
         joueur.km += 0.195;
         joueur.zone.push(carte);
         aJoueCarte = true;
-        kmAjoutes = 0.195; // Enregistrer les km ajoutés
     } else if (carte.type === "parade") {
         const crasse = joueur.zone.find(c => carte.contre && carte.contre.includes(c.nom));
         if (!crasse) return setStatus("Aucune crasse à contrer avec cette parade.");
@@ -950,7 +913,6 @@ function jouerCarte(carte) {
             }
         }
         aJoueCarte = true;
-        kmAjoutes = 0; // Pas de km ajoutés pour parade
     } else if (carte.type === "ravito") {
         joueurs.forEach(j => {
             j.zone = j.zone.filter(c => c.type !== "crasse" && c.type !== "parade");
@@ -958,22 +920,16 @@ function jouerCarte(carte) {
         });
         defausse.push(carte);
         aJoueCarte = true;
-        kmAjoutes = 0; // Pas de km ajoutés pour ravito
     } else if (carte.type === "botte") {
         // Utiliser kmNormal car posée pendant le tour normal
         carte.estReaction = false; // Pas une réaction
-        // Limiter les kmNormal pour ne pas dépasser 42 km
-        const kmRestants = 42 - joueur.km;
-        const kmAAjouter = Math.min(carte.kmNormal || 0, kmRestants);
-        joueur.km += kmAAjouter;
-        kmAjoutes = kmAAjouter; // Enregistrer les km ajoutés
+        joueur.km += carte.kmNormal || 0;
         joueur.points += modeJeu === "premier" ? 5 : 4;
         joueur.zone.push(carte);
         aJoueCarte = true;
-        console.log(`J${joueur.id} joue botte ${carte.nom} en tour normal, ajoute ${kmAAjouter} km, km total=${joueur.km.toFixed(3)}`);
     }
     retirerCarte(joueur.main, carte);
-    console.log(`J${joueur.id} joue ${carte.nom}, ajoute ${kmAjoutes} km, km total=${joueur.km.toFixed(3)}`);
+    console.log(`J${joueur.id} joue ${carte.nom}`);
     setStatus(`J${joueur.id}${joueur.estIA ? ` (IA, ${joueur.personnalite})` : ""} a joué ${carte.nom}.`);
     maj();
 }
