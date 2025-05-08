@@ -314,6 +314,7 @@ function maj() {
 
     // Gérer l'affichage des écrans en fonction de l'état du jeu
     if (!modeJeu) {
+        console.log("Affichage de modeSelectionScreen");
         modeSelectionScreen.style.display = "block";
         gameTypeScreen.style.display = "none";
         playerSelectionScreen.style.display = "none";
@@ -321,6 +322,7 @@ function maj() {
         return;
     }
     if (!typePartie) {
+        console.log("Affichage de gameTypeScreen");
         modeSelectionScreen.style.display = "none";
         gameTypeScreen.style.display = "block";
         playerSelectionScreen.style.display = "none";
@@ -328,6 +330,7 @@ function maj() {
         return;
     }
     if (!nombreJoueurs) {
+        console.log("Affichage de playerSelectionScreen");
         modeSelectionScreen.style.display = "none";
         gameTypeScreen.style.display = "none";
         playerSelectionScreen.style.display = "block";
@@ -351,12 +354,14 @@ function maj() {
 
     // Afficher l'écran de réaction si un joueur doit réagir à une crasse
     if (dernierCrasseJoueur && !enReactionActive && !joueur.estIA) {
+        console.log(`Affichage de reactionScreen pour J${joueurActif}`);
         reactionScreen.style.display = "flex";
         gameScreen.style.display = "none";
         const crasseActive = joueur.zone.slice(-1)[0]?.nom || "inconnue";
         document.getElementById("reactionMessage").textContent = `J${joueurActif}, réagis à la crasse : ${crasseActive}`;
         return;
     } else {
+        console.log("Affichage de gameScreen");
         reactionScreen.style.display = "none";
         gameScreen.style.display = "block";
     }
@@ -364,12 +369,65 @@ function maj() {
     // Mettre à jour les informations du joueur actif et le statut
     document.getElementById("joueurActif").textContent = `Joueur actif : J${joueurActif}${joueur.estIA ? ` (IA, ${joueur.personnalite})` : ""}${dernierCrasseJoueur ? " (réaction)" : crasseEnCours ? " (choix cible)" : enFinDeTour ? " (fin de tour)" : ""}`;
     document.getElementById("status").textContent = getStatus();
-    // Suppression de : document.getElementById("piocheCount").textContent = `(${deck.length})`;
 
-    // Mettre à jour la pioche et la défausse avec actualiserPiocheDefausse
+    // Mettre à jour la pioche et la défausse
+    console.log("Mise à jour de piocheDefausse");
     actualiserPiocheDefausse();
 
-    // ... (le reste de la fonction maj reste inchangé)
+    // Mettre à jour la main du joueur
+    console.log(`Mise à jour de mainJoueur pour J${joueurActif}, ${joueur.main.length} cartes`);
+    mainJoueur.innerHTML = ""; // Vider la main
+    if (joueur.main.length > 0) {
+        joueur.main.forEach((carte, index) => {
+            if (!carte || !carte.nom || !carte.type) {
+                console.warn(`Carte invalide dans la main de J${joueurActif} à l'index ${index}`, carte);
+                return;
+            }
+            console.log(`Affichage de la carte ${carte.nom} pour J${joueurActif}`);
+            afficherCarte(mainJoueur, carte, true); // interactif = true pour les boutons
+        });
+    } else {
+        console.warn(`Aucune carte dans la main de J${joueurActif}`);
+        mainJoueur.innerHTML = "<span>Aucune carte</span>";
+    }
+
+    // Mettre à jour les zones des joueurs
+    console.log("Mise à jour de zoneJeu");
+    zoneJeu.innerHTML = "";
+    joueurs.forEach(j => {
+        const zoneJoueur = document.createElement("div");
+        zoneJoueur.id = `zoneJ${j.id}`;
+        zoneJoueur.className = "zoneJoueur";
+        zoneJoueur.innerHTML = `<h3>J${j.id}${j.estIA ? ` (IA, ${j.personnalite})` : ""}</h3>`;
+        const cartesRegroupees = regrouperCartes(j.zone);
+        cartesRegroupees.forEach(g => {
+            afficherCarteGroupee(zoneJoueur, g.carte, g.quantite, g.totalKm, g.totalTemps);
+        });
+        zoneJeu.appendChild(zoneJoueur);
+
+        const pileParades = document.createElement("div");
+        pileParades.id = `pileParadesJ${j.id}`;
+        pileParades.className = "pileParades";
+        const paradesRegroupees = regrouperCartes(j.pileParades);
+        paradesRegroupees.forEach(g => {
+            afficherCarteGroupee(pileParades, g.carte, g.quantite, g.totalKm, g.totalTemps);
+        });
+        zoneJeu.appendChild(pileParades);
+    });
+
+    // Gérer les boutons d'action
+    console.log(`Mise à jour des boutons, aPioche=${aPioche}, aJoueCarte=${aJoueCarte}, crasseEnCours=${crasseEnCours}, enFinDeTour=${enFinDeTour}`);
+    btnPrendreDefausse.style.display = defausse.length > 0 && !aPioche && !aJoueCarte && !crasseEnCours ? "inline-block" : "none";
+    finTourContainer.style.display = (aPioche || aJoueCarte) && !crasseEnCours && !enFinDeTour && joueur.main.length <= 6 ? "block" : "none";
+    reactionButtonsContainer.style.display = enReactionActive && !aReagi ? "block" : "none";
+    passeJoueurContainer.style.display = enFinDeTour ? "block" : "none";
+    crasseTargetContainer.style.display = crasseEnCours ? "block" : "none";
+
+    // Gérer le tour de l'IA
+    if (joueur.estIA && !crasseEnCours && !enReactionActive && !enAttentePasseJoueur) {
+        console.log(`Lancement de jouerTourIA pour J${joueurActif}`);
+        setTimeout(() => jouerTourIA(joueur), 1000);
+    }
 }
 // Nouvelle fonction pour regrouper les cartes
 function regrouperCartes(cartes) {
