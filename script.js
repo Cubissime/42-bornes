@@ -418,7 +418,10 @@ function regrouperCartes(cartes) {
 
 // Nouvelle fonction pour afficher une carte ou un groupe de cartes
 function afficherCarteGroupee(container, carte, quantite, totalKm = 0, totalTemps = 0) {
-    if (!carte || !carte.nom || !carte.type) return;
+    if (!carte || !carte.nom || !carte.type) {
+        console.warn("afficherCarteGroupee - Carte invalide:", carte);
+        return;
+    }
 
     console.log(`afficherCarteGroupee - Carte: ${carte.nom}, Type: ${carte.type}, Quantité: ${quantite}, Total KM: ${totalKm}, Total Temps: ${totalTemps}, estReaction: ${carte.estReaction}`);
 
@@ -432,8 +435,13 @@ function afficherCarteGroupee(container, carte, quantite, totalKm = 0, totalTemp
     img.alt = carte.nom;
     img.className = "carte-image";
     img.onerror = () => {
-        img.src = "images/placeholder.png";
         console.warn(`Image manquante pour la carte : ${carte.nom}`);
+        img.style.display = "none";
+        const texteErreur = document.createElement("span");
+        texteErreur.innerText = carte.nom;
+        texteErreur.style.color = "red";
+        texteErreur.style.fontSize = "11px";
+        div.insertBefore(texteErreur, img);
     };
     div.appendChild(img);
 
@@ -443,13 +451,12 @@ function afficherCarteGroupee(container, carte, quantite, totalKm = 0, totalTemp
     if (carte.type === "depart" && modeJeu === "premier") {
         nomAffiche = carte.nom.replace("Sas", "Départ");
     } else if (carte.type === "km") {
-        nomAffiche = carte.nom.split(" ")[0]; // Ex. "1K"
+        nomAffiche = carte.nom.split(" ")[0];
         if ((modeJeu === "contreLaMontre" || typePartie === "contreIA") && totalTemps > 0) {
             nomAffiche += ` (${totalTemps} min)`;
         }
     }
     texteCarte.innerText = nomAffiche;
-    // Supprimé : texteCarte.style.display = "none"; // Afficher le texte
     div.appendChild(texteCarte);
 
     if (quantite > 1) {
@@ -474,20 +481,24 @@ function afficherCarteGroupee(container, carte, quantite, totalKm = 0, totalTemp
             imgIndividuelle.alt = c.nom;
             imgIndividuelle.className = "carte-image";
             imgIndividuelle.onerror = () => {
-                imgIndividuelle.src = "images/placeholder.png";
                 console.warn(`Image manquante pour la carte : ${c.nom}`);
+                imgIndividuelle.style.display = "none";
+                const texteErreur = document.createElement("span");
+                texteErreur.innerText = c.nom;
+                texteErreur.style.color = "red";
+                texteErreur.style.fontSize = "11px";
+                carteIndividuelle.insertBefore(texteErreur, imgIndividuelle);
             };
             carteIndividuelle.appendChild(imgIndividuelle);
             const texteIndividuel = document.createElement("span");
             let nomIndividuel = c.nom;
             if (c.type === "km") {
-                nomIndividuel = c.nom.split(" ")[0]; // Ex. "1K"
+                nomIndividuel = c.nom.split(" ")[0];
                 if ((modeJeu === "contreLaMontre" || typePartie === "contreIA") && c.temps > 0) {
                     nomIndividuel += ` (${c.temps} min)`;
                 }
             }
             texteIndividuel.innerText = nomIndividuel;
-            // Supprimé : texteIndividuel.style.display = "none"; // Afficher le texte
             carteIndividuelle.appendChild(texteIndividuel);
             listeDeroulante.appendChild(carteIndividuelle);
         });
@@ -582,14 +593,19 @@ function actualiserPiocheDefausse() {
         img.alt = "Dos de carte";
         img.className = "carte-image";
         img.onerror = () => {
-            img.src = "images/placeholder.png";
             console.warn("Image du dos de carte manquante : Back_Card.png");
+            img.style.display = "none";
+            const texteErreur = document.createElement("span");
+            texteErreur.innerText = "Pioche";
+            texteErreur.style.color = "red";
+            texteErreur.style.fontSize = "11px";
+            div.insertBefore(texteErreur, img);
         };
         div.appendChild(img);
         const texte = document.createElement("span");
         texte.className = "pioche-count";
         texte.innerText = `Pioche (${deck.length})`;
-        texte.style.display = "block"; // Afficher le texte
+        texte.style.display = "block";
         div.appendChild(texte);
         pioche.appendChild(div);
     } else {
@@ -610,11 +626,17 @@ function actualiserPiocheDefausse() {
         img.alt = "Défausse vide";
         img.className = "carte-image";
         img.onerror = () => {
-            img.src = "images/placeholder.png";
             console.warn("Image du dos de carte manquante : Back_Card.png");
+            img.style.display = "none";
+            const texteErreur = document.createElement("span");
+            texteErreur.innerText = "Défausse";
+            texteErreur.style.color = "red";
+            texteErreur.style.fontSize = "11px";
+            div.insertBefore(texteErreur, img);
         };
         div.appendChild(img);
         const texte = document.createElement("span");
+        texte.className = "defausse-count";
         texte.innerText = "Défausse vide";
         texte.style.display = "block";
         div.appendChild(texte);
@@ -623,7 +645,10 @@ function actualiserPiocheDefausse() {
 }
 
 function afficherCarte(container, carte, interactif = false) {
-    if (!carte || !carte.nom || !carte.type) return;
+    if (!carte || !carte.nom || !carte.type) {
+        console.warn("afficherCarte - Carte invalide:", carte);
+        return;
+    }
 
     const estReaction = carte.estReaction === true;
     console.log(`afficherCarte - Carte: ${carte.nom}, Type: ${carte.type}, estReaction: ${carte.estReaction}, Applique botte-reaction: ${carte.type === "botte" && estReaction}`);
@@ -638,8 +663,13 @@ function afficherCarte(container, carte, interactif = false) {
     img.alt = carte.nom;
     img.className = "carte-image";
     img.onerror = () => {
-        img.src = "images/placeholder.png";
         console.warn(`Image manquante pour la carte : ${carte.nom}`);
+        img.style.display = "none"; // Cacher l'image cassée
+        const texteErreur = document.createElement("span");
+        texteErreur.innerText = carte.nom; // Afficher le nom à la place
+        texteErreur.style.color = "red";
+        texteErreur.style.fontSize = "11px";
+        div.insertBefore(texteErreur, img);
     };
     div.appendChild(img);
 
@@ -655,7 +685,6 @@ function afficherCarte(container, carte, interactif = false) {
         }
     }
     texteCarte.innerText = nomAffiche;
-    // Supprimé : texteCarte.style.display = "none"; // Afficher le texte
     div.appendChild(texteCarte);
 
     if (interactif) {
