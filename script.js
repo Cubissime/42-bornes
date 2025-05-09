@@ -32,8 +32,8 @@ const cartesData = [
     { nom: "Crampe", type: "crasse", quantite: 6, temps: 0, image: "images/Crampe.png" },
     { nom: "Déshydratation", type: "crasse", quantite: 6, temps: 0, image: "images/Deshydratation.png" },
     { nom: "Hypoglycémie", type: "crasse", quantite: 6, temps: 0, image: "images/Hypoglycemie.png" },
-    { nom: "Pipi Femme", type: "crasse", quantite: 3, temps: 0, image: "images/Pipi_Femme.png" },
-    { nom: "Pipi Homme", type: "crasse", quantite: 3, temps: 0, image: "images/Pipi_Homme.png" },
+    { nom: "Pipi Femme", type: "crasse", quantite: 3, temps: 0, image: "images/Pipi_F.png" },
+    { nom: "Pipi Homme", type: "crasse", quantite: 3, temps: 0, image: "images/Pipi_H.png" },
     { nom: "Limite 2K femme", type: "crasse", quantite: 4, temps: 0, image: "images/Limite_2K_femme.png" },
     { nom: "Limite 2K homme", type: "crasse", quantite: 4, temps: 0, image: "images/Limite_2K_homme.png" },
     // Parades
@@ -42,33 +42,33 @@ const cartesData = [
     { nom: "Eau", type: "parade", quantite: 12, temps: 2, contre: ["Déshydratation"], image: "images/Eau.png" },
     { nom: "Electrolyte", type: "parade", quantite: 12, temps: 2, contre: ["Crampe"], image: "images/Electrolyte.png" },
     { nom: "Medic", type: "parade", quantite: 12, temps: 7, contre: ["Chute"], image: "images/Medic.png" },
-    { nom: "Buisson", type: "parade", quantite: 6, temps: 4, contre: ["Pipi Femme", "Pipi Homme"], image: "images/Buisson.png" },
-    { nom: "Voitures", type: "parade", quantite: 6, temps: 3, contre: ["Pipi Femme", "Pipi Homme"], image: "images/Voitures.png" },
-    { nom: "Meneur", type: "parade", quantite: 16, temps: 0, contre: ["Limite 2K femme", "Limite 2K homme"], image: "images/Meneur.png" },
+    { nom: "Buisson", type: "parade", quantite: 6, temps: 4, contre: ["Pipi Femme", "Pipi Homme"], image: "images/buisson.png" },
+    { nom: "Voitures", type: "parade", quantite: 6, temps: 3, contre: ["Pipi Femme", "Pipi Homme"], image: "images/voitures.png" },
+    { nom: "Meneur", type: "parade", quantite: 16, temps: 0, contre: ["Limite 2K femme", "Limite 2K homme"], image: "images/meneur.png" },
     // Ravitaillement
     { nom: "Ravito", type: "ravito", quantite: 8, temps: 0, image: "images/Ravito.png" },
     // Bottes
-    { nom: "3 pipis avant départ", type: "botte", quantite: 1, temps: 0, protege: ["Pipi Femme", "Pipi Homme"], kmNormal: 4, kmReaction: 8, image: "images/3_pipis_avant_départ.png" },
+    { nom: "3 pipis avant départ", type: "botte", quantite: 1, temps: 0, protege: ["Pipi Femme", "Pipi Homme"], kmNormal: 4, kmReaction: 8, image: "images/3pipis.png" },
     { nom: "Genouillere", type: "botte", quantite: 1, temps: 0, protege: ["Chute"], kmNormal: 4, kmReaction: 8, image: "images/Genouillere.png" },
-    { nom: "gourdes d'electrolyte", type: "botte", quantite: 1, temps: 0, protege: ["Crampe"], kmNormal: 4, kmReaction: 8, image: "images/gourdes_d_electrolyte.png" },
-    { nom: "poche d'eau", type: "botte", quantite: 1, temps: 0, protege: ["Déshydratation"], kmNormal: 4, kmReaction: 8, image: "images/poche_d_eau.png" },
-    { nom: "stock de gel et de barre", type: "botte", quantite: 1, temps: 0, protege: ["Hypoglycémie", "Limite 2K femme", "Limite 2K homme"], kmNormal: 4, kmReaction: 8, image: "images/stock_de_gel_et_de_barre.png" }
+    { nom: "gourdes d'electrolyte", type: "botte", quantite: 1, temps: 0, protege: ["Crampe"], kmNormal: 4, kmReaction: 8, image: "images/gourdes-d-electrolyte.png" },
+    { nom: "poche d'eau", type: "botte", quantite: 1, temps: 0, protege: ["Déshydratation"], kmNormal: 4, kmReaction: 8, image: "images/Poche-d-eau.png" },
+    { nom: "stock de gel et de barre", type: "botte", quantite: 1, temps: 0, protege: ["Hypoglycémie", "Limite 2K femme", "Limite 2K homme"], kmNormal: 4, kmReaction: 8, image: "images/Gel-et-barres.png" }
 ];
 
 // Cartes Départ séparées
 const cartesDepart = [
-    { nom: "Sas 2H15", type: "depart", quantite: 2, tempsMax: 135, image: "images/Sas_2H15.png" },
-    { nom: "Sas 2H30", type: "depart", quantite: 2, tempsMax: 150, image: "images/Sas_2H30.png" },
-    { nom: "Sas 2H45", type: "depart", quantite: 2, tempsMax: 165, image: "images/Sas_2H45.png" },
-    { nom: "Sas 3H00", type: "depart", quantite: 2, tempsMax: 180, image: "images/Sas_3H00.png" },
-    { nom: "Sas 3H15", type: "depart", quantite: 2, tempsMax: 195, image: "images/Sas_3H15.png" },
-    { nom: "Sas 3H30", type: "depart", quantite: 2, tempsMax: 210, image: "images/Sas_3H30.png" },
-    { nom: "Sas 3H45", type: "depart", quantite: 2, tempsMax: 225, image: "images/Sas_3H45.png" },
-    { nom: "Sas 4H00", type: "depart", quantite: 2, tempsMax: 240, image: "images/Sas_4H00.png" },
-    { nom: "Sas 4H15", type: "depart", quantite: 2, tempsMax: 255, image: "images/Sas_4H15.png" },
-    { nom: "Sas 4H30", type: "depart", quantite: 2, tempsMax: 270, image: "images/Sas_4H30.png" },
-    { nom: "Sas 4H45", type: "depart", quantite: 2, tempsMax: 285, image: "images/Sas_4H45.png" },
-    { nom: "Sas 5H00", type: "depart", quantite: 2, tempsMax: 300, image: "images/Sas_5H00.png" }
+    { nom: "Sas 2H15", type: "depart", quantite: 2, tempsMax: 135, image: "images/2H15.png" },
+    { nom: "Sas 2H30", type: "depart", quantite: 2, tempsMax: 150, image: "images/2H30.png" },
+    { nom: "Sas 2H45", type: "depart", quantite: 2, tempsMax: 165, image: "images/2H45.png" },
+    { nom: "Sas 3H00", type: "depart", quantite: 2, tempsMax: 180, image: "images/3H00.png" },
+    { nom: "Sas 3H15", type: "depart", quantite: 2, tempsMax: 195, image: "images/3H15.png" },
+    { nom: "Sas 3H30", type: "depart", quantite: 2, tempsMax: 210, image: "images/3H30.png" },
+    { nom: "Sas 3H45", type: "depart", quantite: 2, tempsMax: 225, image: "images/3H45.png" },
+    { nom: "Sas 4H00", type: "depart", quantite: 2, tempsMax: 240, image: "images/4H00.png" },
+    { nom: "Sas 4H15", type: "depart", quantite: 2, tempsMax: 255, image: "images/4H15.png" },
+    { nom: "Sas 4H30", type: "depart", quantite: 2, tempsMax: 270, image: "images/4H30.png" },
+    { nom: "Sas 4H45", type: "depart", quantite: 2, tempsMax: 285, image: "images/4H45.png" },
+    { nom: "Sas 5H00", type: "depart", quantite: 2, tempsMax: 300, image: "images/5H00.png" }
 ];
 
 let deck = [], defausse = [], joueurActif = 1, aPioche = false, dernierCrasseJoueur = null, aJoueCarte = false;
