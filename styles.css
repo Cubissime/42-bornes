@@ -66,10 +66,32 @@ button:hover {
 }
 
 #zoneJeu {
-    display: flex;
-    flex-direction: column;
+    display: grid;
     gap: 20px;
     margin: 20px 0;
+}
+
+/* 2 joueurs : 2 zones côte à côte */
+#zoneJeu.joueurs-2 {
+    grid-template-columns: repeat(2, 1fr); /* 2 colonnes égales */
+}
+
+/* 3 joueurs : 2 zones en haut, 1 en bas */
+#zoneJeu.joueurs-3 {
+    grid-template-columns: repeat(2, 1fr); /* 2 colonnes en haut */
+}
+
+/* 4 joueurs : 2 zones en haut, 2 en bas */
+#zoneJeu.joueurs-4 {
+    grid-template-columns: repeat(2, 1fr); /* 2 colonnes par ligne */
+}
+
+/* Ajustement pour la zoneJ3 en 3 joueurs (centrée en bas) */
+#zoneJeu.joueurs-3 #zoneJ3,
+#zoneJeu.joueurs-3 #pileParadesJ3 {
+    grid-column: span 2; /* Occupe toute la largeur */
+    justify-self: center;
+    max-width: 50%; /* Limite la largeur pour centrage */
 }
 
 .zoneJoueur, .pileParades {
@@ -77,6 +99,7 @@ button:hover {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    box-sizing: border-box;
 }
 
 #passeJoueurContainer {
