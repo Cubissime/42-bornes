@@ -2,6 +2,8 @@ body {
     font-family: Arial, sans-serif;
     text-align: center;
     background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
 }
 
 h1, h2, h3 {
@@ -30,6 +32,10 @@ button:hover {
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+#gameScreen {
+    min-height: 600px;
 }
 
 #reactionScreen {
@@ -66,40 +72,73 @@ button:hover {
 }
 
 #zoneJeu {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     gap: 20px;
     margin: 20px 0;
+    width: 100%;
+    max-width: 800px;
+    min-height: 200px;
+    align-items: center;
+    background-color: #e0e0e0;
 }
 
-/* 2 joueurs : 2 zones côte à côte */
+/* 2 joueurs : Zones côte à côte */
 #zoneJeu.joueurs-2 {
-    grid-template-columns: repeat(2, 1fr); /* 2 colonnes égales */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Conteneur pour regrouper zoneJ et pileParadesJ */
+.zone-joueur-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
 }
 
 /* 3 joueurs : 2 zones en haut, 1 en bas */
 #zoneJeu.joueurs-3 {
-    grid-template-columns: repeat(2, 1fr); /* 2 colonnes en haut */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: start;
 }
 
 /* 4 joueurs : 2 zones en haut, 2 en bas */
 #zoneJeu.joueurs-4 {
-    grid-template-columns: repeat(2, 1fr); /* 2 colonnes par ligne */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: start;
 }
 
-/* Ajustement pour la zoneJ3 en 3 joueurs (centrée en bas) */
-#zoneJeu.joueurs-3 #zoneJ3,
-#zoneJeu.joueurs-3 #pileParadesJ3 {
-    grid-column: span 2; /* Occupe toute la largeur */
+/* Centrer J3 pour 3 joueurs */
+#zoneJeu.joueurs-3 .zone-joueur-container:nth-child(3) {
+    grid-column: span 2;
     justify-self: center;
-    max-width: 50%; /* Limite la largeur pour centrage */
+    max-width: 50%;
+}
+
+/* Masquer les zones inutiles */
+#zoneJeu:not(.joueurs-2):not(.joueurs-3):not(.joueurs-4) .zone-joueur-container:nth-child(n+3),
+#zoneJeu.joueurs-2 .zone-joueur-container:nth-child(n+3),
+#zoneJeu.joueurs-3 .zone-joueur-container:nth-child(n+4) {
+    display: none;
 }
 
 .zoneJoueur, .pileParades {
     background-color: #f9f9f9;
-    padding: 10px;
-    border: 1px solid #ccc;
+    padding: 15px;
+    border: 2px solid #666;
     border-radius: 5px;
     box-sizing: border-box;
+    width: 100%;
+    max-width: 350px;
+    min-height: 100px;
+    text-align: left;
+    background-color: #fff;
 }
 
 #passeJoueurContainer {
