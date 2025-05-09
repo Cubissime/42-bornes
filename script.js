@@ -398,6 +398,16 @@ function maj() {
         mainJoueur.classList.remove("flou");
     }
 
+    // Appliquer la classe appropriée à #zoneJeu selon le nombre de joueurs
+    zoneJeu.classList.remove("joueurs-2", "joueurs-3", "joueurs-4");
+    if (nombreJoueurs === 2) {
+        zoneJeu.classList.add("joueurs-2");
+    } else if (nombreJoueurs === 3) {
+        zoneJeu.classList.add("joueurs-3");
+    } else if (nombreJoueurs === 4) {
+        zoneJeu.classList.add("joueurs-4");
+    }
+
     // Mettre à jour les zones des joueurs
     console.log("Mise à jour de zoneJeu");
     zoneJeu.innerHTML = "";
