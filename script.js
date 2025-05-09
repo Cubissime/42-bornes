@@ -293,7 +293,7 @@ function peutReagir(joueurId) {
 }
 
 function maj() {
-    console.log(`maj appelé pour J${joueurActif}, estIA=${getJoueur(joueurActif)?.estIA}, modeJeu=${modeJeu}, typePartie=${typePartie}, main=${getJoueur(joueurActif)?.main.length} cartes`);
+    console.log(`maj appelé pour J${joueurActif}, estIA=${getJoueur(joueurActif)?.estIA}, modeJeu=${modeJeu}, typePartie=${typePartie}, main=${getJoueur(joueurActif)?.main.length} cartes, nombreJoueurs=${nombreJoueurs}`);
 
     // Récupérer les éléments du DOM
     const modeSelectionScreen = document.getElementById("modeSelectionScreen");
@@ -304,13 +304,23 @@ function maj() {
     const zoneJeu = document.getElementById("zoneJeu");
     const mainJoueur = document.getElementById("mainJoueur");
     const piocheDefausse = document.getElementById("piocheDefausse");
-    const finTourContainer = document.getElementById("finTourContainer");
     const reactionButtonsContainer = document.getElementById("reactionButtonsContainer");
     const passeJoueurContainer = document.getElementById("passeJoueurContainer");
     const crasseTargetContainer = document.getElementById("crasseTargetContainer");
+    const btnPiocher = document.getElementById("btnPiocher");
     const btnPrendreDefausse = document.getElementById("btnPrendreDefausse");
     const btnPasser = document.getElementById("btnPasser");
     const btnTermine = document.getElementById("btnTermine");
+
+    // Vérifier que #zoneJeu existe
+    if (!zoneJeu) {
+        console.error("Erreur : #zoneJeu non trouvé dans le DOM");
+        return;
+    }
+
+    // Log des styles appliqués à #zoneJeu
+    const zoneJeuStyles = window.getComputedStyle(zoneJeu);
+    console.log(`Styles de #zoneJeu : display=${zoneJeuStyles.display}, flex-direction=${zoneJeuStyles.flexDirection}`);
 
     // Gérer l'affichage des écrans en fonction de l'état du jeu
     if (!modeJeu) {
@@ -401,41 +411,92 @@ function maj() {
     // Appliquer la classe appropriée à #zoneJeu selon le nombre de joueurs
     zoneJeu.classList.remove("joueurs-2", "joueurs-3", "joueurs-4");
     if (nombreJoueurs === 2) {
+        console.log("Application de la classe joueurs-2 à #zoneJeu (côte à côte)");
         zoneJeu.classList.add("joueurs-2");
     } else if (nombreJoueurs === 3) {
+        console.log("Application de la classe joueurs-3 à #zoneJeu");
         zoneJeu.classList.add("joueurs-3");
     } else if (nombreJoueurs === 4) {
+        console.log("Application de la classe joueurs-4 à #zoneJeu");
         zoneJeu.classList.add("joueurs-4");
+    } else {
+        console.log("Pas de classe spécifique ajoutée à #zoneJeu (flex vertical par défaut)");
     }
 
-    // Mettre à jour les zones des joueurs
-    console.log("Mise à jour de zoneJeu");
-    zoneJeu.innerHTML = "";
-    joueurs.forEach(j => {
+    // Mettre à jour les zones des joueurs (seulement pour les joueurs actifs)
+    console.log(`Mise à jour de zoneJeu pour ${nombreJoueurs} joueurs`);
+    zoneJeu.innerHTML = ""; // Vider pour éviter les zones inutiles
+    joueurs.slice(0, nombreJoueurs).forEach(j => {
+        console.log(`Génération de zoneJ${j.id} et pileParadesJ${j.id}`);
+        // Créer un conteneur pour regrouper zoneJ et pileParadesJ
+        const joueurContainer = document.createElement("div");
+        joueurContainer.className = "zone-joueur-container";
+
+        // Zone de jeu du joueur
         const zoneJoueur = document.createElement("div");
         zoneJoueur.id = `zoneJ${j.id}`;
         zoneJoueur.className = "zoneJoueur";
         zoneJoueur.innerHTML = `<h3>J${j.id}${j.estIA ? ` (IA, ${j.personnalite})` : ""}</h3>`;
         const cartesRegroupees = regrouperCartes(j.zone);
-        cartesRegroupees.forEach(g => {
-            afficherCarteGroupee(zoneJoueur, g.carte, g.quantite, g.totalKm, g.totalTemps);
-        });
-        zoneJeu.appendChild(zoneJoueur);
+        if (cartesRegroupees.length === 0) {
+            zoneJoueur.innerHTML += `<p>Zone de J${j.id} - Aucune carte</p>`;
+        } else {
+            cartesRegroupees.forEach(g => {
+                afficherCarteGroupee(zoneJoueur, g.carte, g.quantite, g.totalKm, g.totalTemps);
+            });
+        }
+        joueurContainer.appendChild(zoneJoueur);
 
+        // Pile de parades
         const pileParades = document.createElement("div");
         pileParades.id = `pileParadesJ${j.id}`;
         pileParades.className = "pileParades";
         const paradesRegroupees = regrouperCartes(j.pileParades);
-        paradesRegroupees.forEach(g => {
-            afficherCarteGroupee(pileParades, g.carte, g.quantite, g.totalKm, g.totalTemps);
-        });
-        zoneJeu.appendChild(pileParades);
+        if (paradesRegroupees.length === 0) {
+            pileParades.innerHTML = `<p>Pile de parades J${j.id} - Aucune parade</p>`;
+        } else {
+            paradesRegroupees.forEach(g => {
+                afficherCarteGroupee(pileParades, g.carte, g.quantite, g.totalKm, g.totalTemps);
+            });
+        }
+        joueurContainer.appendChild(pileParades);
+
+        zoneJeu.appendChild(joueurContainer);
     });
+
+    // Nettoyer explicitement les zones inutiles
+    for (let i = nombreJoueurs + 1; i <= 4; i++) {
+        const zoneInutile = document.getElementById(`zoneJ${i}`);
+        const pileInutile = document.getElementById(`pileParadesJ${i}`);
+        if (zoneInutile) {
+            console.log(`Suppression de zoneJ${i} inutile`);
+            zoneInutile.remove();
+        }
+        if (pileInutile) {
+            console.log(`Suppression de pileParadesJ${i} inutile`);
+            pileInutile.remove();
+        }
+    }
+
+    // Log final pour vérifier le contenu et les styles
+    console.log(`Contenu final de #zoneJeu : ${zoneJeu.innerHTML}`);
+    console.log(`Classes de #zoneJeu : ${zoneJeu.className}`);
 
     // Gérer les boutons d'action
     console.log(`Mise à jour des boutons, aPioche=${aPioche}, aJoueCarte=${aJoueCarte}, crasseEnCours=${crasseEnCours}, enFinDeTour=${enFinDeTour}, enAttentePasseJoueur=${enAttentePasseJoueur}`);
+
+    // Bouton "Piocher" ou "Fin de tour"
+    if ((aPioche || aJoueCarte) && !crasseEnCours && !enFinDeTour && joueur.main.length <= 6) {
+        btnPiocher.textContent = "Fin de tour";
+        btnPiocher.onclick = () => finTour(); // Appelle finTour() au lieu de piocher
+        btnPiocher.style.display = "inline-block";
+    } else {
+        btnPiocher.textContent = "Piocher";
+        btnPiocher.onclick = () => piocher(); // Appelle la fonction piocher() (assumée existante)
+        btnPiocher.style.display = !aPioche && !aJoueCarte && !crasseEnCours ? "inline-block" : "none";
+    }
+
     btnPrendreDefausse.style.display = defausse.length > 0 && !aPioche && !aJoueCarte && !crasseEnCours ? "inline-block" : "none";
-    finTourContainer.style.display = (aPioche || aJoueCarte) && !crasseEnCours && !enFinDeTour && joueur.main.length <= 6 ? "block" : "none";
     reactionButtonsContainer.style.display = enReactionActive && !aReagi ? "block" : "none";
     passeJoueurContainer.style.display = enAttentePasseJoueur ? "block" : "none";
     crasseTargetContainer.style.display = crasseEnCours ? "block" : "none";
