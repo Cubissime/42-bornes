@@ -391,6 +391,13 @@ function maj() {
         mainJoueur.innerHTML = "<span>Aucune carte</span>";
     }
 
+    // Appliquer ou retirer la classe flou pour #mainJoueur
+    if (enAttentePasseJoueur) {
+        mainJoueur.classList.add("flou");
+    } else {
+        mainJoueur.classList.remove("flou");
+    }
+
     // Mettre à jour les zones des joueurs
     console.log("Mise à jour de zoneJeu");
     zoneJeu.innerHTML = "";
@@ -416,11 +423,11 @@ function maj() {
     });
 
     // Gérer les boutons d'action
-    console.log(`Mise à jour des boutons, aPioche=${aPioche}, aJoueCarte=${aJoueCarte}, crasseEnCours=${crasseEnCours}, enFinDeTour=${enFinDeTour}`);
+    console.log(`Mise à jour des boutons, aPioche=${aPioche}, aJoueCarte=${aJoueCarte}, crasseEnCours=${crasseEnCours}, enFinDeTour=${enFinDeTour}, enAttentePasseJoueur=${enAttentePasseJoueur}`);
     btnPrendreDefausse.style.display = defausse.length > 0 && !aPioche && !aJoueCarte && !crasseEnCours ? "inline-block" : "none";
     finTourContainer.style.display = (aPioche || aJoueCarte) && !crasseEnCours && !enFinDeTour && joueur.main.length <= 6 ? "block" : "none";
     reactionButtonsContainer.style.display = enReactionActive && !aReagi ? "block" : "none";
-    passeJoueurContainer.style.display = enFinDeTour ? "block" : "none";
+    passeJoueurContainer.style.display = enAttentePasseJoueur ? "block" : "none";
     crasseTargetContainer.style.display = crasseEnCours ? "block" : "none";
 
     // Gérer le tour de l'IA
@@ -429,6 +436,7 @@ function maj() {
         setTimeout(() => jouerTourIA(joueur), 1000);
     }
 }
+
 // Nouvelle fonction pour regrouper les cartes
 function regrouperCartes(cartes) {
     const groupes = [];
